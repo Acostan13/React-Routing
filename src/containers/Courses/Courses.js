@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import './Courses.css';
-import Course from '../Course/Course'
+
 
 class Courses extends Component {
     state = {
@@ -20,11 +20,14 @@ class Courses extends Component {
                 <section className="Courses">
                     {
                         this.state.courses.map( course => {
-                            return <article className="Course" key={course.id}>{course.title}</article>;
+                            return <Link to={this.props.match.url + '/' + course.id} key={course.id}>
+                            <article  
+                            className="Course">
+                            {course.title}</article>
+                            </Link>
                         } )
                     }
                 </section>
-                <Route path={'/course'} component={Course}/>
             </div>
         );
     }
